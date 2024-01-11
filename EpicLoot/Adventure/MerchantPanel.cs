@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using EpicLoot.Adventure.Feature;
 using EpicLoot.Crafting;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -75,7 +76,7 @@ namespace EpicLoot.Adventure
                     resultsPanel.SetActive(false);
                     resultsPanel.transform.SetParent(transform);
                     GambleSuccessDialog = resultsPanel.gameObject.AddComponent<CraftSuccessDialog>();
-                    GambleSuccessDialog.NameText = GambleSuccessDialog.transform.Find("Topic").GetComponent<Text>();
+                    GambleSuccessDialog.NameText = GambleSuccessDialog.transform.Find("Topic").GetComponent<TMP_Text>();
                     GambleSuccessDialog.Frame = (RectTransform)GambleSuccessDialog.transform;
                     GambleSuccessDialog.Frame.anchoredPosition = new Vector2(0, 0);
                 }
@@ -151,7 +152,7 @@ namespace EpicLoot.Adventure
                 $"$mod_epicloot_merchant_gamble: {gambleRefreshTooltip}\n" +
                 $"$mod_epicloot_merchant_treasuremaps: {treasureMapRefreshTooltip}\n" +
                 $"$mod_epicloot_merchant_bounties: {bountiesRefreshTooltip}\n\n" +
-                $"<color=silver>$mod_epicloot_merchant_rollovertime</color>";
+                $"<color=#c0c0c0ff>$mod_epicloot_merchant_rollovertime</color>";
 
             var buyListPrefab = transform.Find("SecretStash/Panel/ItemElement").gameObject.AddComponent<BuyListElement>();
             buyListPrefab.gameObject.SetActive(false);
@@ -311,7 +312,7 @@ namespace EpicLoot.Adventure
             var message = refreshInterval > 1 ?
                 Localization.instance.Localize("$mod_epicloot_merchant_refreshdays", refreshInterval.ToString()) : 
                 "$mod_epicloot_merchant_refreshday";
-            return $"<color=lightblue>{message}</color>";
+            return $"<color=#add8e6ff>{message}</color>";
         }
 
         public void Update()

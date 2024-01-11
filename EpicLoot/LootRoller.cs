@@ -204,7 +204,7 @@ namespace EpicLoot
             {
                 return results;
             }
-            
+
             if (EpicLoot.AlwaysDropCheat)
             {
                 drops = drops.Where(x => x.Key > 0).ToList();
@@ -223,7 +223,7 @@ namespace EpicLoot
 
                 drops = modifiedDrops;
             }
-            
+
             _weightedDropCountTable.Setup(drops, dropPair => dropPair.Value);
             var dropCountRollResult = _weightedDropCountTable.Roll();
             var dropCount = dropCountRollResult.Key;
@@ -234,8 +234,29 @@ namespace EpicLoot
             }
             
             var loot = GetLootForLevel(lootTable, level);
+            
+            if (loot == null)
+                loot = new LootDrop[] { };
+
+            EpicLoot.Log($"Available Loot ({loot.Length}) for table: {lootTable.Object} for level {level}");
+            foreach (var lootDrop in loot)
+            {
+                var itemName = lootDrop?.Item ?? "Invalid/Null";
+                var rarity = lootDrop?.Rarity?.Length ?? -1;
+                var weight = lootDrop?.Weight ?? -1;
+                EpicLoot.Log($"Item: {itemName} - Rarity Count: {rarity} - Weight: {weight}");
+            }
+            
             _weightedLootTable.Setup(loot, x => x.Weight);
             var selectedDrops = _weightedLootTable.Roll(dropCount);
+
+            EpicLoot.Log($"Selected Drops: {lootTable.Object} for level {level}");
+            foreach (var lootDrop in selectedDrops)
+            {
+                var itemName = !string.IsNullOrEmpty(lootDrop?.Item) ? lootDrop.Item : "Invalid Item Name";
+                var rarityLength = lootDrop?.Rarity?.Length != null ? lootDrop.Rarity.Length : -1;
+                EpicLoot.Log($"Item: {itemName} - Rarity Count: {rarityLength} - Weight: {lootDrop.Weight}");
+            }
 
             var cheatsActive = AnyItemSpawnCheatsActive();
             foreach (var ld in selectedDrops)
@@ -246,13 +267,28 @@ namespace EpicLoot
                 }
                 var lootDrop = ResolveLootDrop(ld);
                 
+                var itemName = !string.IsNullOrEmpty(lootDrop?.Item) ? lootDrop.Item : "Invalid Item Name";
+                var rarityLength = lootDrop?.Rarity?.Length != null ? lootDrop.Rarity.Length : -1;
+                EpicLoot.Log($"Item: {itemName} - Rarity Count: {rarityLength} - Weight: {lootDrop.Weight}");
+                
                 if (!cheatsActive && EpicLoot.ItemsToMaterialsDropRatio.Value > 0)
                 {
                     var clampedConvertRate = Mathf.Clamp(EpicLoot.ItemsToMaterialsDropRatio.Value, 0.0f, 1.0f);
                     var replaceWithMats = Random.Range(0.0f, 1.0f) < clampedConvertRate;
                     if (replaceWithMats)
                     {
-                        var prefab = ObjectDB.instance.GetItemPrefab(lootDrop.Item);
+                        GameObject prefab = null;
+
+                        try
+                        {
+                            prefab = ObjectDB.instance.GetItemPrefab(lootDrop.Item);
+                        }
+                        catch (Exception e)
+                        {
+                            EpicLoot.LogWarning($"Unable to get Prefab for [{lootDrop.Item}]. Continuing.");
+                            EpicLoot.LogWarning($"Error: {e.Message}");
+                        }
+
                         if (prefab != null)
                         {
                             var rarity = RollItemRarity(lootDrop, luckFactor);
@@ -262,7 +298,18 @@ namespace EpicLoot
                             {
                                 foreach (var itemAmountConfig in disenchantProducts)
                                 {
-                                    var materialPrefab = ObjectDB.instance.GetItemPrefab(itemAmountConfig.Item);
+                                    GameObject materialPrefab = null;
+                                    try
+                                    {
+                                        materialPrefab = ObjectDB.instance.GetItemPrefab(itemAmountConfig.Item);
+                                    }
+                                    catch (Exception e)
+                                    {
+                                        EpicLoot.LogWarning($"Unable to get Disenchant Product Prefab for [{itemAmountConfig?.Item ?? "Invalid Item"}]. Continuing.");
+                                        EpicLoot.LogWarning($"Error: {e.Message}");
+                                    }
+
+                                    if (materialPrefab == null) continue;
                                     var materialItem = SpawnLootForDrop(materialPrefab, dropPoint, true);
                                     var materialItemDrop = materialItem.GetComponent<ItemDrop>();
                                     materialItemDrop.m_itemData.m_stack = itemAmountConfig.Amount;
@@ -278,7 +325,18 @@ namespace EpicLoot
                 }
                 var itemID = (CheatDisableGating) ? lootDrop.Item : GatedItemTypeHelper.GetGatedItemID(lootDrop.Item);
 
-                var itemPrefab = ObjectDB.instance.GetItemPrefab(itemID);
+                GameObject itemPrefab = null;
+
+                try
+                {
+                    itemPrefab = ObjectDB.instance.GetItemPrefab(itemID);
+                }
+                catch (Exception e)
+                {
+                    EpicLoot.LogWarning($"Unable to get Gated Item Prefab for [{itemID ?? "Invalid Item"}]. Continuing.");
+                    EpicLoot.LogWarning($"Error: {e.Message}");
+                }
+
                 if (itemPrefab == null)
                 {
                     EpicLoot.LogError($"Tried to spawn loot ({itemID}) for ({objectName}), but the item prefab was not found!");
@@ -302,7 +360,7 @@ namespace EpicLoot
                 }
                 results.Add(item);
             }
-
+            
             return results;
         }
 

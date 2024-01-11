@@ -1,3 +1,80 @@
+## Version 0.9.37 - Auga Tooltip Bug Fix
+* Auga Tooltip now populates correctly in the Crafting and Augmenting actions.
+
+<details>
+<summary><b>Changelog History</b> (<i>click to expand</i>)</summary>
+
+## Version 0.9.36 - Valheim Enchantment System Compatibility
+* Added compatibility with Valheim Enchantment System
+* Fixed bug that would occur if there was no rarity table in the loottable entry.
+* Added defensive coding around loot rolling to ensure no errors would occur.
+* Refactored Auga's EpicLoot tooltips for showing Magic Items.
+
+## Version 0.9.35 - Various Clean Up
+* Added additional logging and break prevention for loot rolls
+    * This is to prevent loot roller from breaking because of bad patches.
+* Added additional logging and break prevention for patch files directory.
+    * This is to prevent bad BepInEx installs from crashing Epic Loot fully.
+    * Still need to ensure the BepInEx for Valheim is used from Thunderstore.
+* Added 4 new config settings that control additional items that bosses drop and to allow customization to drops in the same way that Trophies do.
+    * Crypt Key Drop Mode
+    * Crypt Key Drop Player Range
+    * Wishbone Drop Mode
+    * Wishbone Drop Player Range
+
+## Version 0.9.34 - Valheim Update 0.217.27
+* Updated for 0.217.27 References
+* Updated Unity for 2022.3.9
+* Added Mac/Linux Support
+    * OpenGLCore and Metal Support are now bundled
+* Added Brenna's Trophy to Sacrifice List
+* Added in AdventureBackpacks API
+
+## Version 0.9.33 - BepInEx 5.4.2201 Preparation
+* The removal of the doorstop corlib search path presented a dependency issue for EpicLoot
+  * Fixed the dependency issue by including missing DLL.
+
+## Version 0.9.32 - Auga Compatibility Part 2
+* Now updating Skills in Auga when Magic Effects give Bonus to Skills.
+
+## Version 0.9.31 - Auga Compatibility
+* In preparation for Auga Update, this adds changes needed to support Auga interfaces for the Enchanting Table and Tooltips
+* Various bug fixes
+
+## Version 0.9.30 - Bug Fixes
+* Updated a couple entries in loottables.json that were typos or incorrectly tiered.
+* Updated ServerSync to current community standard.
+  * Will need to update SERVERS to this version.
+* Updated EpicLoot Unity
+* Made a change to Augmenter/Enchanter Furniture that may cause errors from the previous version.
+  * Dismantle the augmenter/enchanter created from 0.9.29 and recreate.
+
+## Version 0.9.29 - Bug Fixes
+* Tooltips when only one effect was present were getting cut off.
+  * This is fixed by adding some text after the effects.
+* Added Rarity and Effect Count to Tooltips.
+* Fixed a display issue on Skills when a +Skills Effect is equipped.
+* Fixed a long term display issue where additional skill bar wouldn't disappear after unequipping a weapon
+* Added a null check to the Loot Roller in rare cases where an item is configured, but doesn't exist in game.
+* Changed original augmenter and enchanter to be furniture and updated descriptions
+* Updated Unity Project to 0.217.24 and TMP 3.2.0 -preview5
+* Updated a few places where colors were not hex values.
+
+## Version 0.9.28 - Augmenting Menu Issue
+* Missed a spot where I needed to update to TMP_Text
+
+## Version 0.9.27 - Fixing Server Sync
+* Had to update server sync correctly.
+
+## Version 0.9.26 - Valheim Update 0.217.24
+* Updated for Valheim 0.217.24
+* Adjust Swamp Bounties to have better chance to spawn. Looking at you Leeches!
+
+## Version 0.9.24/25 - Fixing Bounties
+* Fixed: Some bounties would spawn without name plate and would not register as a kill.
+* Slightly changed the logic to hopefully prevent underwater bounty spawns that shouldn't be underwater.
+* 0.9.25 - is a recompile to up the version after the zip got messed up.
+
 ## Version 0.9.23 - Crafting with Enchanted Components
 * Recipes built with items that are Enchanted will now carry over their magical properties to the new item.
     * The highest magical rarity will carry over if more than one magical item is consumed.
@@ -458,3 +535,5 @@
   * Fixed never respawning after dying	
   * Fixed a bug where a whole stack of trophies would be disenchanted for a single crafting material	
   * Updated correct ## Version number everywhere
+
+</details>

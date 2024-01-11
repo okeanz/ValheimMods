@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>EpicLoot</RootNamespace>
     <AssemblyName>EpicLoot</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
@@ -35,79 +35,86 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="0Harmony">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Valheim\BepInEx\core\0Harmony.dll</HintPath>
+      <HintPath>M:\Code\VapokModBase\References\BepInEx\5.4.2201\BepInEx\core\0Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="AdventureBackpacksAPI">
+      <HintPath>..\..\VapokModBase\References\ABAPI\AdventureBackpacksAPI.dll</HintPath>
     </Reference>
     <Reference Include="AnimationSpeedManager">
       <HintPath>..\Libs\AnimationSpeedManager.dll</HintPath>
     </Reference>
     <Reference Include="assembly_guiutils_publicized">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Valheim\valheim_Data\Managed\publicized_assemblies\assembly_guiutils_publicized.dll</HintPath>
+      <HintPath>M:\Code\VapokModBase\References\Valheim\0.217.28\assembly_guiutils_publicized.dll</HintPath>
     </Reference>
     <Reference Include="assembly_utils_publicized">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Valheim\valheim_Data\Managed\publicized_assemblies\assembly_utils_publicized.dll</HintPath>
+      <HintPath>M:\Code\VapokModBase\References\Valheim\0.217.28\assembly_utils_publicized.dll</HintPath>
     </Reference>
     <Reference Include="assembly_valheim_publicized">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Valheim\valheim_Data\Managed\publicized_assemblies\assembly_valheim_publicized.dll</HintPath>
+      <HintPath>M:\Code\VapokModBase\References\Valheim\0.217.28\assembly_valheim_publicized.dll</HintPath>
     </Reference>
     <Reference Include="AugaAPI">
       <HintPath>..\Libs\AugaAPI.dll</HintPath>
     </Reference>
     <Reference Include="BepInEx">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Valheim\BepInEx\core\BepInEx.dll</HintPath>
+      <HintPath>M:\Code\VapokModBase\References\BepInEx\5.4.2201\BepInEx\core\BepInEx.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Libs\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="ServerSync, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\Libs\ServerSync.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization">
+      <HintPath>..\Libs\System.Runtime.Serialization.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>..\..\VapokModBase\References\BepInEx\5.4.2201\unstripped_corlib\Unity.TextMeshPro.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Valheim\unstripped_corlib\UnityEngine.dll</HintPath>
+      <HintPath>M:\Code\VapokModBase\References\BepInEx\5.4.2201\unstripped_corlib\UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AnimationModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Valheim\unstripped_corlib\UnityEngine.AnimationModule.dll</HintPath>
+      <HintPath>M:\Code\VapokModBase\References\BepInEx\5.4.2201\unstripped_corlib\UnityEngine.AnimationModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AssetBundleModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Valheim\unstripped_corlib\UnityEngine.AssetBundleModule.dll</HintPath>
+      <HintPath>M:\Code\VapokModBase\References\BepInEx\5.4.2201\unstripped_corlib\UnityEngine.AssetBundleModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AudioModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Valheim\unstripped_corlib\UnityEngine.AudioModule.dll</HintPath>
+      <HintPath>M:\Code\VapokModBase\References\BepInEx\5.4.2201\unstripped_corlib\UnityEngine.AudioModule.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.ClothModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\ExtendedItemDataFramework\bin\Debug\UnityEngine.ClothModule.dll</HintPath>
+    <Reference Include="UnityEngine.ClothModule">
+      <HintPath>M:\Code\VapokModBase\References\BepInEx\5.4.2201\unstripped_corlib\UnityEngine.ClothModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Valheim\unstripped_corlib\UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>M:\Code\VapokModBase\References\BepInEx\5.4.2201\unstripped_corlib\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.ImageConversionModule">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Valheim\unstripped_corlib\UnityEngine.ImageConversionModule.dll</HintPath>
+      <HintPath>M:\Code\VapokModBase\References\BepInEx\5.4.2201\unstripped_corlib\UnityEngine.ImageConversionModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.InputLegacyModule">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Valheim\unstripped_corlib\UnityEngine.InputLegacyModule.dll</HintPath>
+      <HintPath>M:\Code\VapokModBase\References\BepInEx\5.4.2201\unstripped_corlib\UnityEngine.InputLegacyModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.ParticleSystemModule">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Valheim\unstripped_corlib\UnityEngine.ParticleSystemModule.dll</HintPath>
+      <HintPath>M:\Code\VapokModBase\References\BepInEx\5.4.2201\unstripped_corlib\UnityEngine.ParticleSystemModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.PhysicsModule">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Valheim\unstripped_corlib\UnityEngine.PhysicsModule.dll</HintPath>
+      <HintPath>M:\Code\VapokModBase\References\BepInEx\5.4.2201\unstripped_corlib\UnityEngine.PhysicsModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TextRenderingModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Valheim\unstripped_corlib\UnityEngine.TextRenderingModule.dll</HintPath>
+      <HintPath>M:\Code\VapokModBase\References\BepInEx\5.4.2201\unstripped_corlib\UnityEngine.TextRenderingModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Valheim\unstripped_corlib\UnityEngine.UI.dll</HintPath>
+      <HintPath>M:\Code\VapokModBase\References\BepInEx\5.4.2201\unstripped_corlib\UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UIModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Valheim\unstripped_corlib\UnityEngine.UIModule.dll</HintPath>
+      <HintPath>M:\Code\VapokModBase\References\BepInEx\5.4.2201\unstripped_corlib\UnityEngine.UIModule.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -301,11 +308,11 @@
     <EmbeddedResource Include="..\Libs\AugaAPI.dll">
       <Link>AugaAPI.dll</Link>
     </EmbeddedResource>
-    <EmbeddedResource Include="..\Libs\Newtonsoft.Json.dll">
-      <Link>Newtonsoft.Json.dll</Link>
-    </EmbeddedResource>
     <EmbeddedResource Include="..\ValheimUnity\Assets\ExternalLibraries\EpicLoot-UnityLib.dll">
       <Link>EpicLoot-UnityLib.dll</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\ValheimUnity\AssetBundles\epiclootpieces">
+      <Link>epiclootpieces</Link>
     </EmbeddedResource>
     <Content Include="ILRepack.targets">
       <SubType>Designer</SubType>
@@ -315,22 +322,23 @@
   <Import Project="..\Common\Common.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="Copy" AfterTargets="ILRepack">
-    <Exec Command="xcopy &quot;$(TargetDir)$(TargetFileName)&quot; &quot;C:\Program Files (x86)\Steam\steamapps\common\Valheim\BepInEx\plugins\$(ProjectName)\&quot; /q /y /i" />
-    <Exec Command="xcopy &quot;$(TargetDir)$(TargetFileName)&quot; &quot;C:\Program Files (x86)\Steam\steamapps\common\Valheim_Dev\BepInEx\plugins\$(ProjectName)\&quot; /q /y /i" />
+    <Exec Command="xcopy &quot;$(TargetDir)$(TargetFileName)&quot; &quot;G:\Steam\steamapps\common\Valheim-Dev\BepInEx\plugins\$(ProjectName)\&quot; /q /y /i" />
   </Target>
   <PropertyGroup>
-    <PostBuildEvent>xcopy "$(ProjectDir)translations.json" "C:\Program Files (x86)\Steam\steamapps\common\Valheim\BepInEx\plugins\$(ProjectName)\" /q /y /i
-xcopy "$(ProjectDir)loottables.json" "C:\Program Files (x86)\Steam\steamapps\common\Valheim\BepInEx\plugins\$(ProjectName)\" /q /y /i
-xcopy "$(ProjectDir)magiceffects.json" "C:\Program Files (x86)\Steam\steamapps\common\Valheim\BepInEx\plugins\$(ProjectName)\" /q /y /i
-xcopy "$(ProjectDir)iteminfo.json" "C:\Program Files (x86)\Steam\steamapps\common\Valheim\BepInEx\plugins\$(ProjectName)\" /q /y /i
-xcopy "$(ProjectDir)recipes.json" "C:\Program Files (x86)\Steam\steamapps\common\Valheim\BepInEx\plugins\$(ProjectName)\" /q /y /i
-xcopy "$(ProjectDir)enchantcosts.json" "C:\Program Files (x86)\Steam\steamapps\common\Valheim\BepInEx\plugins\$(ProjectName)\" /q /y /i
-xcopy "$(ProjectDir)itemnames.json" "C:\Program Files (x86)\Steam\steamapps\common\Valheim\BepInEx\plugins\$(ProjectName)\" /q /y /i
-xcopy "$(ProjectDir)adventuredata.json" "C:\Program Files (x86)\Steam\steamapps\common\Valheim\BepInEx\plugins\$(ProjectName)\" /q /y /i
-xcopy "$(ProjectDir)legendaries.json" "C:\Program Files (x86)\Steam\steamapps\common\Valheim\BepInEx\plugins\$(ProjectName)\" /q /y /i
-xcopy "$(ProjectDir)abilities.json" "C:\Program Files (x86)\Steam\steamapps\common\Valheim\BepInEx\plugins\$(ProjectName)\" /q /y /i
-xcopy "$(ProjectDir)materialconversions.json" "C:\Program Files (x86)\Steam\steamapps\common\Valheim\BepInEx\plugins\$(ProjectName)\" /q /y /i
-xcopy "$(ProjectDir)enchantingupgrades.json" "C:\Program Files (x86)\Steam\steamapps\common\Valheim\BepInEx\plugins\$(ProjectName)\" /q /y /i</PostBuildEvent>
+    <PostBuildEvent>
+      xcopy "$(ProjectDir)translations.json" "G:\Steam\steamapps\common\Valheim-Dev\BepInEx\plugins\$(ProjectName)\" /q /y /i
+      xcopy "$(ProjectDir)loottables.json" "G:\Steam\steamapps\common\Valheim-Dev\BepInEx\plugins\$(ProjectName)\" /q /y /i
+      xcopy "$(ProjectDir)magiceffects.json" "G:\Steam\steamapps\common\Valheim-Dev\BepInEx\plugins\$(ProjectName)\" /q /y /i
+      xcopy "$(ProjectDir)iteminfo.json" "G:\Steam\steamapps\common\Valheim-Dev\BepInEx\plugins\$(ProjectName)\" /q /y /i
+      xcopy "$(ProjectDir)recipes.json" "G:\Steam\steamapps\common\Valheim-Dev\BepInEx\plugins\$(ProjectName)\" /q /y /i
+      xcopy "$(ProjectDir)enchantcosts.json" "G:\Steam\steamapps\common\Valheim-Dev\BepInEx\plugins\$(ProjectName)\" /q /y /i
+      xcopy "$(ProjectDir)enchantingupgrades.json" "G:\Steam\steamapps\common\Valheim-Dev\BepInEx\plugins\$(ProjectName)\" /q /y /i
+      xcopy "$(ProjectDir)itemnames.json" "G:\Steam\steamapps\common\Valheim-Dev\BepInEx\plugins\$(ProjectName)\" /q /y /i
+      xcopy "$(ProjectDir)adventuredata.json" "G:\Steam\steamapps\common\Valheim-Dev\BepInEx\plugins\$(ProjectName)\" /q /y /i
+      xcopy "$(ProjectDir)legendaries.json" "G:\Steam\steamapps\common\Valheim-Dev\BepInEx\plugins\$(ProjectName)\" /q /y /i
+      xcopy "$(ProjectDir)abilities.json" "G:\Steam\steamapps\common\Valheim-Dev\BepInEx\plugins\$(ProjectName)\" /q /y /i
+      xcopy "$(ProjectDir)materialconversions.json" "G:\Steam\steamapps\common\Valheim-Dev\BepInEx\plugins\$(ProjectName)\" /q /y /i
+</PostBuildEvent>
   </PropertyGroup>
   <Import Project="..\packages\ILRepack.Lib.MSBuild.Task.2.0.18.2\build\ILRepack.Lib.MSBuild.Task.targets" Condition="Exists('..\packages\ILRepack.Lib.MSBuild.Task.2.0.18.2\build\ILRepack.Lib.MSBuild.Task.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
@@ -339,4 +347,9 @@ xcopy "$(ProjectDir)enchantingupgrades.json" "C:\Program Files (x86)\Steam\steam
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\ILRepack.Lib.MSBuild.Task.2.0.18.2\build\ILRepack.Lib.MSBuild.Task.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\ILRepack.Lib.MSBuild.Task.2.0.18.2\build\ILRepack.Lib.MSBuild.Task.targets'))" />
   </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties manifest_1json__JsonSchema="" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>

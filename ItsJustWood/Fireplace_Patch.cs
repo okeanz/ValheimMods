@@ -4,77 +4,41 @@ using UnityEngine;
 
 namespace ItsJustWood
 {
-    //public bool Interact(Humanoid user, bool hold)
-    [HarmonyPatch(typeof(Fireplace), "Interact")]
+    [HarmonyPatch(typeof(Fireplace), nameof(Fireplace.Interact))]
     public static class Fireplace_Interact_Patch
     {
-        public static bool Prefix(Fireplace __instance, ref bool __result, Humanoid user, bool hold)
+        [HarmonyPriority(Priority.Last)]
+        private static void Prefix(Fireplace __instance, Humanoid user, ref ItemDrop __state)
         {
-            if (hold)
-            {
-                __result = false;
-                return false;
-            }
+            if (!ItsJustWood.modEnabled.Value)
+                return;
 
-            if (!__instance.m_nview.HasOwner())
-            {
-                __instance.m_nview.ClaimOwnership();
-            }
+            if (__instance.m_fuelItem != ItsJustWood.wood)
+                return;
 
             Inventory inventory = user.GetInventory();
-            if (inventory == null)
-            {
-                __result = true;
-                return false;
-            }
+            if (inventory.HaveItem(__instance.m_fuelItem.m_itemData.m_shared.m_name))
+                return;
 
-            var fuelItem = GetAvailableFuelItem(inventory, __instance.m_fuelItem.m_itemData.m_shared.m_name);
-            if (!string.IsNullOrEmpty(fuelItem))
-            {
-                if (Mathf.CeilToInt(__instance.m_nview.GetZDO().GetFloat("fuel")) >= __instance.m_maxFuel)
-                {
-                    user.Message(MessageHud.MessageType.Center, Localization.instance.Localize("$msg_cantaddmore", __instance.m_fuelItem.m_itemData.m_shared.m_name));
-                    __result = false;
-                    return false;
-                }
-                user.Message(MessageHud.MessageType.Center, Localization.instance.Localize("$msg_fireadding", fuelItem));
-                inventory.RemoveItem(fuelItem, 1);
-                __instance.m_nview.InvokeRPC("AddFuel", Array.Empty<object>());
-                __result = true;
-                return false;
-            }
-            user.Message(MessageHud.MessageType.Center, "$msg_outof " + __instance.m_fuelItem.m_itemData.m_shared.m_name);
+            ItemDrop itemFuelReplacement = ItsJustWood.GetReplacementFuelItem(inventory, __instance.m_fuelItem);
+            if (itemFuelReplacement == null)
+                return;
 
-            __result = false;
-            return false;
+            __state = __instance.m_fuelItem;
+
+            __instance.m_fuelItem = itemFuelReplacement;
         }
 
-        public static string GetAvailableFuelItem(Inventory inventory, string builtIn)
+        [HarmonyPriority(Priority.First)]
+        private static void Postfix(Fireplace __instance, ItemDrop __state)
         {
-            if (inventory.HaveItem(builtIn))
-            {
-                return builtIn;
-            }
+            if (!ItsJustWood.modEnabled.Value)
+                return;
 
-            var fineWood = ObjectDB.instance.GetItemPrefab("FineWood").GetComponent<ItemDrop>();
-            var coreWood = ObjectDB.instance.GetItemPrefab("RoundLog").GetComponent<ItemDrop>();
-            var ancientBark = ObjectDB.instance.GetItemPrefab("ElderBark").GetComponent<ItemDrop>();
-            if (ItsJustWood.AllowFineWoodForFuel.Value && inventory.HaveItem(fineWood.m_itemData.m_shared.m_name))
-            {
-                return fineWood.m_itemData.m_shared.m_name;
-            }
+            if (__state == null)
+                return;
 
-            if (ItsJustWood.AllowCoreWoodForFuel.Value && inventory.HaveItem(coreWood.m_itemData.m_shared.m_name))
-            {
-                return coreWood.m_itemData.m_shared.m_name;
-            }
-
-            if (ItsJustWood.AllowAncientBarkForFuel.Value && inventory.HaveItem(ancientBark.m_itemData.m_shared.m_name))
-            {
-                return ancientBark.m_itemData.m_shared.m_name;
-            }
-
-            return string.Empty;
+            __instance.m_fuelItem = __state;
         }
     }
 }

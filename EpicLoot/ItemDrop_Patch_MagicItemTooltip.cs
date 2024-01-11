@@ -12,13 +12,15 @@ namespace EpicLoot
     [HarmonyPatch(typeof(InventoryGrid), nameof(InventoryGrid.CreateItemTooltip), typeof(ItemDrop.ItemData), typeof(UITooltip))]
     public static class InventoryGrid_CreateItemTooltip_MagicItemComponent_Patch
     {
-        public static bool Prefix(ItemDrop.ItemData item, UITooltip tooltip)
+        [HarmonyAfter(new []{"kg.ValheimEnchantmentSystem"})]
+        public static bool Prefix(ItemDrop.ItemData item, UITooltip tooltip, out string __state)
         {
+            __state = null;
             string tooltipText;
             if (item.IsEquipable() && !item.m_equipped && Player.m_localPlayer != null && Player.m_localPlayer.HasEquipmentOfType(item.m_shared.m_itemType) && Input.GetKey(KeyCode.LeftControl))
             {
                 var otherItem = Player.m_localPlayer.GetEquipmentOfType(item.m_shared.m_itemType);
-                tooltipText = item.GetTooltip() + $"\n\n<color=#AAA><i>$mod_epicloot_currentlyequipped:</i></color>\n<size=18>{otherItem.GetDecoratedName()}</size>\n" + otherItem.GetTooltip();
+                tooltipText = item.GetTooltip() + $"<color=#AAA><i>$mod_epicloot_currentlyequipped:</i></color>\n<size=18>{otherItem.GetDecoratedName()}</size>\n" + otherItem.GetTooltip();
             }
             else
             {
@@ -62,7 +64,7 @@ namespace EpicLoot
             text.Append("\n");
             if (item.m_shared.m_dlc.Length > 0)
             {
-                text.Append("\n<color=aqua>$item_dlc</color>");
+                text.Append("\n<color=#00ffffff>$item_dlc</color>");
             }
 
             ItemDrop.ItemData.AddHandedTip(item, text);
@@ -279,7 +281,7 @@ namespace EpicLoot
             }
 
             // Add magic item effects here
-            text.Append(magicItem.GetTooltip());
+            text.AppendLine(magicItem.GetTooltip());
 
             // Set stuff
             if (item.IsSetItem())
@@ -328,8 +330,8 @@ namespace EpicLoot
                 __result += text.ToString();
             }
             
-            __result = __result.Replace("<color=orange>", "<color=lightblue>");
-            __result = __result.Replace("<color=yellow>", "<color=lightblue>");
+            __result = __result.Replace("<color=orange>", "<color=#add8e6ff>");
+            __result = __result.Replace("<color=yellow>", "<color=#add8e6ff>");
             __result = __result.Replace("\n\n\n", "\n\n");
         }
 
